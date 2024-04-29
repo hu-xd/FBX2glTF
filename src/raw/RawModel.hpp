@@ -354,9 +354,9 @@ struct RawNode {
   Quatf rotation;
   Vec3f scale;
 
-  Vec3f geomatricTranslation;
-  Quatf geomatricRotation;
-  Vec3f geomatricScale;
+  Vec3f geometricTranslation;
+  Quatf geometricRotation;
+  Vec3f geometricScaling;
 
   long surfaceId;
   long lightIx;

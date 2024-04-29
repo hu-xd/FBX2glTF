@@ -828,7 +828,7 @@ ModelData* Raw2Gltf(
       // hu-xd
       const auto meshNodeIx = gltf->nodes.ptrs.size();
       auto meshNodeData = gltf->nodes.hold(
-          new NodeData(node.name + "-mesh", node.geomatricTranslation, node.geomatricRotation, node.geomatricScale, false));
+          new NodeData(node.name + "-mesh", node.geometricTranslation, node.geometricRotation, node.geometricScaling, false));
       nodeData->AddChildNode(meshNodeIx);
 
       //
