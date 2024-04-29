@@ -756,6 +756,8 @@ static void ReadNodeHierarchy(
     node.geometricRotation = toQuatf(FbxQuaternion(geometricRotation.mData[0], geometricRotation.mData[1], geometricRotation.mData[2]));
     node.geometricScaling = toVec3f(geometricScaling);
   } else {
+    node.geometricTranslation = Vec3f{0.0f};
+    node.geometricRotation = Quatf{0.0f};
     node.geometricScaling = Vec3f{1.0f};
   }
 

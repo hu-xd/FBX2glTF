@@ -825,12 +825,6 @@ ModelData* Raw2Gltf(
       //auto nodeData = gltf->nodes.ptrs[i];
       auto nodeData = nodesById[node.id];
 
-      // hu-xd
-      const auto meshNodeIx = gltf->nodes.ptrs.size();
-      auto meshNodeData = gltf->nodes.hold(
-          new NodeData(node.name + "-mesh", node.geometricTranslation, node.geometricRotation, node.geometricScaling, false));
-      nodeData->AddChildNode(meshNodeIx);
-
       //
       // Assign mesh to node
       //
@@ -839,6 +833,13 @@ ModelData* Raw2Gltf(
         const RawSurface& rawSurface = raw.GetSurface(surfaceIndex);
 
         MeshData& meshData = require(meshBySurfaceId, rawSurface.id);
+
+        // hu-xd
+        const auto meshNodeIx = gltf->nodes.ptrs.size();
+        auto meshNodeData = gltf->nodes.hold(
+            new NodeData(node.name + "-mesh", node.geometricTranslation, node.geometricRotation, node.geometricScaling, false));
+        nodeData->AddChildNode(meshNodeIx);
+
         //nodeData->SetMesh(meshData.ix);
         meshNodeData->SetMesh(meshData.ix);
 
