@@ -751,10 +751,10 @@ static void ReadNodeHierarchy(
   const FbxVector4 geometricRotation = pNode->GetGeometricRotation(FbxNode::eSourcePivot);
   const FbxVector4 geometricScaling = pNode->GetGeometricScaling(FbxNode::eSourcePivot);
   const FbxAMatrix geometricTransform(geometricTranslation, geometricRotation, geometricScaling);
-  if (!geomatricTransform.IsIdentity()) {
-    node.geometricTranslation = toVec3f(geomaetricTranslation) * scaleFactor;
-    node.geomatricRotation = toQuatf(geometricRotation);
-    node.geomatricScaling = toVec3f(geometricScaling);
+  if (!geometricTransform.IsIdentity()) {
+    node.geometricTranslation = toVec3f(geometricTranslation) * scaleFactor;
+    node.geometricRotation = toQuatf(geometricRotation);
+    node.geometricScaling = toVec3f(geometricScaling);
   } else {
     node.geometricScaling = Vec3f{1.0f};
   }
