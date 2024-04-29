@@ -822,7 +822,13 @@ ModelData* Raw2Gltf(
 
     for (int i = 0; i < raw.GetNodeCount(); i++) {
       const RawNode& node = raw.GetNode(i);
-      auto nodeData = gltf->nodes.ptrs[i];
+      //auto nodeData = gltf->nodes.ptrs[i];
+      auto nodeData = nodesById[node.id];
+
+      // hu-xd
+      auto meshNodeData = gltf->nodes.hold(
+          new NodeData(node.name + "-mesh", node.geomatricTranslation, node.geomatricRotation, node.geomatricScale, false));
+      nodeData.AddChildNode(meshNodeData);
 
       //
       // Assign mesh to node
@@ -832,7 +838,8 @@ ModelData* Raw2Gltf(
         const RawSurface& rawSurface = raw.GetSurface(surfaceIndex);
 
         MeshData& meshData = require(meshBySurfaceId, rawSurface.id);
-        nodeData->SetMesh(meshData.ix);
+        //nodeData->SetMesh(meshData.ix);
+        meshNodeData->SetMesh(meshData.ix);
 
         //
         // surface skin
@@ -937,7 +944,7 @@ ModelData* Raw2Gltf(
       }
       for (int i = 0; i < raw.GetNodeCount(); i++) {
         const RawNode& node = raw.GetNode(i);
-        const auto nodeData = gltf->nodes.ptrs[i];
+        const auto nodeData = nodesById[node.id];;
 
         if (node.lightIx >= 0) {
           // we lean on the fact that in this simple case, raw and gltf indexing are aligned

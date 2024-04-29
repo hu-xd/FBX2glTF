@@ -349,9 +349,15 @@ struct RawNode {
   std::string name;
   long parentId;
   std::vector<long> childIds;
+
   Vec3f translation;
   Quatf rotation;
   Vec3f scale;
+
+  Vec3f geomatricTranslation;
+  Quatf geomatricRotation;
+  Vec3f geomatricScale;
+
   long surfaceId;
   long lightIx;
   std::vector<std::string> userProperties;
