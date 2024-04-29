@@ -834,11 +834,11 @@ ModelData* Raw2Gltf(
 
         MeshData& meshData = require(meshBySurfaceId, rawSurface.id);
 
-        // hu-xd
         if (node.hasGeometricTransform) {
           const auto meshNodeIx = gltf->nodes.ptrs.size();
           auto meshNodeData = gltf->nodes.hold(
-            new NodeData(node.name + "-[Mesh]", node.geometricTranslation, node.geometricRotation, node.geometricScaling, false));
+            new NodeData(node.name + "-[Mesh]", node.geometricTranslation, node.geometricRotation, node.geometricScaling, false)
+          );
           meshNodeData->SetMesh(meshData.ix);  
           nodeData->AddChildNode(meshNodeIx);
         } else {

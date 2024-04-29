@@ -183,16 +183,17 @@ static void ReadMesh(
   // const FbxVector4 meshRotation = pNode->GetGeometricRotation(FbxNode::eSourcePivot);
   // const FbxVector4 meshScaling = pNode->GetGeometricScaling(FbxNode::eSourcePivot);
   // const FbxAMatrix meshTransform(meshTranslation, meshRotation, meshScaling);
-  
-  // hu-xd: TEMP HACK
-  FbxAMatrix dummyTransform;
-  dummyTransform.SetIdentity();
-  const FbxMatrix transform = dummyTransform;
-  const FbxMatrix normalTransform = dummyTransform;
 
   // // Remove translation & scaling from transforms that will bi applied to normals, tangents &
   // // binormals
   //const FbxMatrix normalTransform(FbxVector4(), meshRotation, meshScaling);
+  //const FbxMatrix inverseTransposeTransform = normalTransform.Inverse().Transpose();
+  
+  // TEMP HACK
+  FbxAMatrix dummyTransform;
+  dummyTransform.SetIdentity();
+  const FbxMatrix transform = dummyTransform;
+  const FbxMatrix normalTransform = dummyTransform;
   const FbxMatrix inverseTransposeTransform = normalTransform.Inverse().Transpose();
 
   raw.AddVertexAttribute(RAW_VERTEX_ATTRIBUTE_POSITION);
