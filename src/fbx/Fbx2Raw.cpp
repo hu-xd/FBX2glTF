@@ -753,7 +753,7 @@ static void ReadNodeHierarchy(
   const FbxAMatrix geometricTransform(geometricTranslation, geometricRotation, geometricScaling);
   if (!geometricTransform.IsIdentity()) {
     node.geometricTranslation = toVec3f(geometricTranslation) * scaleFactor;
-    node.geometricRotation = toQuatf(geometricRotation);
+    node.geometricRotation = toQuatf(FbxQuaternion(geometricRotation.mData[0], geometricRotation.mData[1], geometricRotation.mData[2]));
     node.geometricScaling = toVec3f(geometricScaling);
   } else {
     node.geometricScaling = Vec3f{1.0f};
