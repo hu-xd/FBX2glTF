@@ -756,7 +756,7 @@ static void ReadNodeHierarchy(
     node.geomatricRotation = toQuatf(geometricRotation);
     node.geomatricScaling = toVec3f(geometricScaling);
   } else {
-    node.geomatricScaling = Vec3f{1.0f};
+    node.geometricScaling = Vec3f{1.0f};
   }
 
   if (parentId) {
