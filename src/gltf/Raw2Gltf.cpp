@@ -835,13 +835,16 @@ ModelData* Raw2Gltf(
         MeshData& meshData = require(meshBySurfaceId, rawSurface.id);
 
         // hu-xd
-        const auto meshNodeIx = gltf->nodes.ptrs.size();
-        auto meshNodeData = gltf->nodes.hold(
-            new NodeData(node.name + "-mesh", node.geometricTranslation, node.geometricRotation, node.geometricScaling, false));
-        nodeData->AddChildNode(meshNodeIx);
-
-        //nodeData->SetMesh(meshData.ix);
-        meshNodeData->SetMesh(meshData.ix);
+        if (node.hasGeometricTransform) {
+          const auto meshNodeIx = gltf->nodes.ptrs.size();
+          auto meshNodeData = gltf->nodes.hold(
+            new NodeData(node.name + "-[Mesh]", node.geometricTranslation, node.geometricRotation, node.geometricScaling, false));
+          meshNodeData->SetMesh(meshData.ix);  
+          nodeData->AddChildNode(meshNodeIx);
+        } else {
+          nodeData->SetMesh(meshData.ix);
+        }
+        
 
         //
         // surface skin

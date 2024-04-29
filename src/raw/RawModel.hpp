@@ -354,6 +354,7 @@ struct RawNode {
   Quatf rotation;
   Vec3f scale;
 
+  bool hasGeometricTransform;
   Vec3f geometricTranslation;
   Quatf geometricRotation;
   Vec3f geometricScaling;
